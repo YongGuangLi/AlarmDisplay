@@ -1,0 +1,339 @@
+/*
+* The MIT License (MIT)
+*
+* Author : LiyG
+*
+* Date : 2018/07/22
+*
+* Description : 白色靓丽
+*
+*/
+
+/**********主界面**********/
+QFrame#frame_scene{
+    border-image: url(:/images/images/HomePage/background.png);
+}
+
+QFrame#frame_top{
+    border-image: url(:/images/images/HomePage/top.png);
+}
+
+QWidget#SwitchWidget{
+    background: rgb(224, 225, 227);
+}
+
+/**********实时告警页面背景色**********/
+QWidget#RealTimeAlarm {
+        border: 1px solid rgb(111, 156, 207);
+}
+
+
+/**********用户配置页面*******
+QWidget#scrollAreaWidgetContents{
+    background: rgb(224, 225, 227);
+}***/
+
+/**********告警颜色配置******
+QWidget{
+    background: rgb(224, 225, 227);
+}
+
+QDialog{
+    background: rgb(224, 225, 227);
+}
+
+QInputDialog{
+     border: 1px solid rgb(224, 225, 227);
+}
+*/
+
+/**********用户登录页面**********/
+QFrame#frame_LoginWindow{
+    border-image: url(:/images/images/LoginWindow/background.png);
+}
+
+QLabel{
+    font-size: 25px;
+    color: rgb(0, 63, 140);
+}
+
+QLabel#label_logo{
+    border-image: url(:/images/images/LoginWindow/logo.png);
+}
+
+QLabel#label_aboutlogo{
+    border-image: url(:/images/images/aboutlogo.png);
+}
+
+
+
+/**********QPushButton**********/
+QPushButton {
+    color: rgb(0, 63, 140);
+    background: transparent;
+    padding: -1;
+    outline: none;
+}
+
+QPushButton:enabled:hover {
+    color: rgb(255, 255, 255);
+    background: rgb(0, 113, 189);
+}
+
+QPushButton:enabled:checked {
+    color: rgb(255, 255, 255);
+    background: rgb(52, 128, 255);
+}
+
+QPushButton:!enabled {
+    color: rgb(255, 255, 255);
+    background: rgb(52, 128, 255);
+}
+
+
+
+QRadioButton{
+    spacing: 5px;
+    color: rgb(0, 63, 140);
+}
+QRadioButton:enabled:checked{
+    color: rgb(0, 63, 140);
+}
+
+QRadioButton:enabled:hover{
+    color: rgb(0, 63, 140);
+}
+
+
+QCheckBox{
+    color: rgb(0, 63, 140);
+    border: 1px solid rgb(224, 225, 227);
+}
+
+
+/**********分组框**********/
+QGroupBox {
+        font-size: 15px;
+        border: 1px solid rgb(224, 225, 227);
+        border-radius: 4px;
+        margin-top: 10px;
+        background: rgb(224, 225, 227);
+}
+QGroupBox::title {
+    color: rgb(0, 63, 140);
+    top: -12px;
+    left: 10px;
+}
+
+
+
+/**********QTabWidget**********/
+QTabWidget::pane {
+    border: none;
+    border-top: 3px solid rgb(0, 78, 161);
+    background: rgb(224, 225, 227);
+}
+
+QTabBar::tab {
+        border: none;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        color: white;
+        background: rgb(120, 170, 220);
+        height: 28px;
+        width: 85px;
+        margin-right: 5px;
+}
+
+
+QTabBar::tab:disabled {
+    width: 0;
+    margin-right: 0px;
+    color: transparent;
+    background: transparent;
+}
+
+QTabBar::tab:selected {
+    color: white;
+    background: rgb(52, 128, 255);
+}
+
+QTabBar#tabBar::tab {
+        border: 1px solid rgb(111, 156, 207);
+        border-bottom: none;
+        color: rgb(70, 71, 73);
+        background: transparent;
+}
+
+QTabBar#tabBar::tab:hover {
+        color: rgb(2, 65, 132);
+}
+
+QTabBar#tabBar::tab:selected {
+        color: rgb(2, 65, 132);
+        background: rgb(232, 241, 252);
+}
+
+
+
+/**********表头**********/
+QHeaderView{
+        border: none;
+        border-bottom: 3px solid rgb(0, 78, 161);
+        background: transparent;
+        min-height: 30px;
+}
+
+QHeaderView::section:horizontal {
+        border: none;
+        color: rgb(255, 255, 255);
+        background: rgb(70, 146, 221);
+        padding-left: 5px;
+}
+
+
+
+
+
+
+
+/*
+QPushButton#pushButton_HomePage {
+    color: rgb(255, 255, 255);
+    background: transparent;
+}
+
+QPushButton#pushButton_HomePage:enabled:hover {
+    color: rgb(255, 255, 255);
+    background: rgb(52, 128, 255);
+}
+
+QPushButton#pushButton_ConfigurationInterface {
+    color: rgb(255, 255, 255);
+    background: transparent;
+}
+
+QPushButton#pushButton_ConfigurationInterface:enabled:hover {
+    color: rgb(255, 255, 255);
+    background: rgb(52, 128, 255);
+}
+
+
+QPushButton#pushButton_login {
+    color: rgb(255, 255, 255);
+    background: transparent;
+}
+
+QPushButton#pushButton_login:enabled:hover {
+    color: rgb(255, 255, 255);
+    background: rgb(52, 128, 255);
+}
+
+QPushButton#pushButton_SystemConfig {
+    color: rgb(255, 255, 255);
+    background: transparent;
+}
+
+QPushButton#pushButton_SystemConfig:enabled:hover {
+    color: rgb(255, 255, 255);
+    background: rgb(52, 128, 255);
+}
+
+
+QPushButton#pushButton_HistoryQuery {
+    color: rgb(255, 255, 255);
+    background: transparent;
+}
+
+QPushButton#pushButton_HistoryQuery:enabled:hover {
+    color: rgb(255, 255, 255);
+    background: rgb(52, 128, 255);
+}
+
+
+QPushButton#pushButton_RealTime {
+    color: rgb(255, 255, 255);
+    background: transparent;
+}
+
+QPushButton#pushButton_RealTime:enabled:hover {
+    color: rgb(255, 255, 255);
+    background: rgb(52, 128, 255);
+}
+
+
+QPushButton#pushButton_alarmConfig {
+    color: rgb(255, 255, 255);
+    background: transparent;
+}
+
+QPushButton#pushButton_alarmConfig:enabled:hover {
+    color: rgb(255, 255, 255);
+    background: rgb(52, 128, 255);
+}
+
+
+
+QPushButton#pushButton_SmartPause {
+    color: rgb(255, 255, 255);
+    background: transparent;
+}
+
+QPushButton#pushButton_SmartPause:enabled:hover {
+    color: rgb(255, 255, 255);
+    background: rgb(52, 128, 255);
+}
+
+QPushButton#pushButton_OriginalPause {
+    color: rgb(255, 255, 255);
+    background: transparent;
+}
+
+QPushButton#pushButton_OriginalPause:enabled:hover {
+    color: rgb(255, 255, 255);
+    background: rgb(52, 128, 255);
+}
+
+
+QPushButton#pushButton_SmartBayFilter {
+    color: rgb(255, 255, 255);
+    background: transparent;
+}
+
+QPushButton#pushButton_SmartBayFilter:enabled:hover {
+    color: rgb(255, 255, 255);
+    background: rgb(52, 128, 255);
+}
+
+QPushButton#pushButton_OriginalBayFilter {
+    color: rgb(255, 255, 255);
+    background: transparent;
+}
+
+QPushButton#pushButton_OriginalBayFilter:enabled:hover {
+    color: rgb(255, 255, 255);
+    background: rgb(52, 128, 255);
+}
+
+
+
+QPushButton#pushButton_SmartBayShield {
+    color: rgb(255, 255, 255);
+    background: transparent;
+}
+
+QPushButton#pushButton_SmartBayShield:enabled:hover {
+    color: rgb(255, 255, 255);
+    background: rgb(52, 128, 255);
+}
+
+QPushButton#pushButton_OriginalBayShield {
+    color: rgb(255, 255, 255);
+    background: transparent;
+}
+
+QPushButton#pushButton_OriginalBayShield:enabled:hover {
+    color: rgb(255, 255, 255);
+    background: rgb(52, 128, 255);
+}
+*/

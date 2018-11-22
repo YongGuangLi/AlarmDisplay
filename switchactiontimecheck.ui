@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SwitchActionTimeCheck</class>
+ <widget class="QWidget" name="SwitchActionTimeCheck">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>710</width>
+    <height>509</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_SwitchActionTimeCheck" rowstretch="1,13">
+   <property name="margin">
+    <number>0</number>
+   </property>
+   <item row="0" column="0">
+    <widget class="QLabel" name="label">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>开关分合动作时间检验</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QTableWidget" name="tableWidget">
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <column>
+      <property name="text">
+       <string>遥控时间</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>厂站</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>间隔</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>遥控点名</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>遥控值</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>遥控来源</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>遥信时间</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>遥信点名</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>遥信值</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>间隔时间</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>检验结果</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>详情</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

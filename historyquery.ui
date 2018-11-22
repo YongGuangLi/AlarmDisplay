@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>HistoryQuery</class>
+ <widget class="QWidget" name="HistoryQuery">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1015</width>
+    <height>709</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_3" rowstretch="1,13">
+   <property name="margin">
+    <number>0</number>
+   </property>
+   <item row="1" column="0">
+    <widget class="QTableWidget" name="tableWidget_AlarmDisp">
+     <column>
+      <property name="text">
+       <string>告警状态</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>告警时间</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>告警等级</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>告警内容</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>告警序号</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>详情</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="rightMargin">
+      <number>9</number>
+     </property>
+     <item>
+      <widget class="QGroupBox" name="groupBox">
+       <property name="maximumSize">
+        <size>
+         <width>400</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="title">
+        <string>告警时间过滤</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <property name="margin">
+         <number>5</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QDateTimeEdit" name="dateTimeEdit_begin">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QDateTimeEdit" name="dateTimeEdit_end">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox_2">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>150</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="title">
+        <string>告警等级过滤</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout">
+        <property name="margin">
+         <number>5</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QComboBox" name="comboBox_AlarmLevel">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <item>
+           <property name="text">
+            <string>事故信号</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>异常信号</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>越限信号</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>变位信号</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>告知信号</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>所有信号</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox_3">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>150</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="title">
+        <string>告警类型过滤</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_4">
+        <property name="margin">
+         <number>5</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QComboBox" name="comboBox_AlarmType">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <item>
+           <property name="text">
+            <string>智能告警</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>原始告警</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox_4">
+       <property name="minimumSize">
+        <size>
+         <width>150</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="title">
+        <string>间隔过滤</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_5">
+        <property name="margin">
+         <number>5</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QComboBox" name="comboBox_bayType">
+          <item>
+           <property name="text">
+            <string>所有间隔</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox_5">
+       <property name="minimumSize">
+        <size>
+         <width>150</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="title">
+        <string>告警状态</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_6">
+        <property name="margin">
+         <number>5</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QComboBox" name="comboBox_alarmStatus">
+          <item>
+           <property name="text">
+            <string>未确认</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>已确认</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>全部告警</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_query">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>60</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>查询</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_export">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>60</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>导出</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
