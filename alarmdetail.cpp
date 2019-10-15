@@ -21,8 +21,8 @@ AlarmDetail::AlarmDetail(QWidget *parent) :
     dialogGraph = new DialogGraph();
     ui->gridLayout_7->addWidget(dialogGraph);
 
-    analysisPcapFile = new AnalysisPcapFile();
-    ui->gridLayout_8->addWidget(analysisPcapFile);
+//    analysisPcapFile = new AnalysisPcapFile();
+//    ui->gridLayout_8->addWidget(analysisPcapFile);
 
    showOtherPage(false);
 }

@@ -32,6 +32,7 @@ bool ConfigIni::initConfigIni(QString filepath)
     settings_->beginGroup("REDIS");
     ipRedis_ = settings_->value("ip").toString();
     portRedis = settings_->value("port").toInt();
+    passwdRedis_ = settings_->value("passwd").toInt();
     settings_->endGroup();
 
     settings_->beginGroup("PATH");
@@ -560,6 +561,11 @@ QString ConfigIni::getIpRedis() const
 int ConfigIni::getPortRedis() const
 {
     return portRedis;
+}
+
+QString ConfigIni::getPasswdRedis() const
+{
+    return passwdRedis_;
 }
 
 QString ConfigIni::getStation() const

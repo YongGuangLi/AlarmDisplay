@@ -89,6 +89,7 @@ public:
     //redis数据
     QString getIpRedis() const;
     int getPortRedis() const;
+    QString getPasswdRedis() const;
 
     QString getStation() const;
 
@@ -154,6 +155,7 @@ private:
 
     QString ipRedis_;
     int portRedis;
+    QString passwdRedis_;
 
     QString station_;
 

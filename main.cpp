@@ -20,10 +20,6 @@ int main(int argc, char *argv[])
     //StyleHelper::setStyle(":/qssstyle/qssstyle/whiteStyle.qss");
     StyleHelper::setStyle(":/qssstyle/qssstyle/homepage.qss");
 
-    init_process_policies();
-    epan_init(register_all_protocols, register_all_protocol_handoffs,NULL, NULL, NULL, NULL, NULL,NULL);
-    init_dissection();
-
     if(!a.isRunning())
     {
         Widget w;

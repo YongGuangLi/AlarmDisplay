@@ -100,6 +100,8 @@ void Widget::initButtonConnections()
 
     aboutDialog = new AboutDialog();
 
+    paraConfig = new ParaConfig();
+
     ui->pushButton_HomePage->setIcon(QIcon(":/images/images/HomePage/homepage.png"));
     ui->pushButton_ConfigurationInterface->setIcon(QIcon(":/images/images/HomePage/configuration.png"));
     ui->pushButton_RealTime->setIcon(QIcon(":/images/images/HomePage/alarm.png"));
@@ -116,8 +118,9 @@ void Widget::initButtonConnections()
     connect(ui->pushButton_RealTime, SIGNAL(clicked()), this, SLOT(switchCurrentPage()));
     connect(ui->pushButton_StatisticAnalysis, SIGNAL(clicked()), this, SLOT(switchCurrentPage()));
     connect(ui->pushButton_login, SIGNAL(clicked()), this, SLOT(switchCurrentPage()));
-    connect(ui->pushButton_Help, SIGNAL(clicked()), this, SLOT(clickAbout()));
+    connect(ui->pushButton_ParaConfig, SIGNAL(clicked()), this, SLOT(switchCurrentPage()));
 
+    connect(ui->pushButton_Help, SIGNAL(clicked()), this, SLOT(clickAbout()));
 
     ui->pushButton_ConfigurationInterface->hide();
 }
@@ -378,6 +381,11 @@ void Widget::switchCurrentPage()
     {
         loginWindow->show();
     }
+    else if (button == ui->pushButton_ParaConfig)
+    {
+        paraConfig->show();
+    }
+
 }
 
 void Widget::switchAlarmPage()
@@ -433,16 +441,16 @@ void Widget::switchAlarmPage()
 
 void Widget::redisSubscribe()
 {
-    redisHelper = new RedisHelper(QString("%1:%2").arg(SingletonConfig->getIpRedis()).arg(SingletonConfig->getPortRedis()).toStdString());
+    SingleRedisHelp->setConnParas(QString("%1:%2").arg(SingletonConfig->getIpRedis()).arg(SingletonConfig->getPortRedis()).toStdString(), SingletonConfig->getPasswdRedis().toStdString());
 
     while(isRunning)
     {
-        if(!redisHelper->check_connect())
+        if(!SingleRedisHelp->check_connect())
         {
-            if(redisHelper->open())
+            if(SingleRedisHelp->open())
             {
                 qDebug()<<QString("Redis Connect Success:%1:%2").arg(SingletonConfig->getIpRedis()).arg(SingletonConfig->getPortRedis());
-                if(redisHelper->subscribe(REDIS_CHANNEL_ALARM,REDIS_CHANNEL_ALARMCALC, NULL) >= 1)
+                if(SingleRedisHelp->subscribe(REDIS_CHANNEL_ALARM,REDIS_CHANNEL_ALARMCALC, NULL) >= 1)
                     qDebug()<<QString("Redis Subscribe Success:%1, %2").arg(REDIS_CHANNEL_ALARM).arg(REDIS_CHANNEL_ALARMCALC);
             }else
             {
@@ -453,7 +461,7 @@ void Widget::redisSubscribe()
         }
 
         string message;
-        if(redisHelper->getMessage(message))
+        if(SingleRedisHelp->getMessage(message))
         {
             RtdbMessage rtdbMessage;
             if(rtdbMessage.ParseFromString(message))

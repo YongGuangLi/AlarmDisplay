@@ -8,8 +8,8 @@
 #define WS_MSVC_NORETURN
 
 
-#include "epan/epan_dissect.h"
 #include "epan/epan.h"
+#include "epan/epan_dissect.h"
 #include "epan/proto.h"
 #include "epan/packet_info.h"
 #include "epan/frame_data.h"
@@ -23,24 +23,13 @@ typedef	long  _Int32;
 typedef char  Byte;
 // Pcap文件头
 #pragma pack( push, 1)
-typedef struct _FileHeader
+
+typedef struct _PacpFileInfo
 {
-    _Int32	iMagic;
-    _Int16	iMaVersion;
-    _Int16	iMiVersion;
-    _Int32	iTimezone;
-    _Int32	iSigFlags;
-    _Int32	iSnapLen;
-    _Int32	iLinkType;
-}FileHeader;
-// 数据包头
-typedef struct _DataPackageHeader
-{
-    _Int32		iTimeSecond;
-    _Int32		iTimeSS;
-    _Int32		iCapLength;
-    _Int32		iLength;
-}DataPackageHeader;
+    int iDataLen;
+    u_char * data;
+}PacpFileInfo;
+
 
 typedef struct _FileInfo{
     QString strFilePath;
@@ -51,27 +40,47 @@ typedef struct _PackageTreeItemToData
 {
     int iStart;
     int iLen;
-    char Data[256];
+    char Data[2048];
 
 }PackageTreeItemToData;
 
-typedef struct _TableShowInfo
-{
-    QString strTime;
-    QString strTimeLag;
-    QString strSrcAddr;
-    QString strDscAddr;
-    QString strPoro;
-    int iLen;
-    QString strInfo;
-    QString strPort;
-    //struct _proto_node *first_child;
-    epan_dissect_t  *edt;
-    frame_data  *fdata;
-    guchar * data;
-    struct pcap_pkthdr *header;
 
-}TableShowInfo;
+
+//typedef struct _FileHeader
+//{
+//    _Int32	iMagic;
+//    _Int16	iMaVersion;
+//    _Int16	iMiVersion;
+//    _Int32	iTimezone;
+//    _Int32	iSigFlags;
+//    _Int32	iSnapLen;
+//    _Int32	iLinkType;
+//}FileHeader;
+//// 数据包头
+//typedef struct _DataPackageHeader
+//{
+//    _Int32		iTimeSecond;
+//    _Int32		iTimeSS;
+//    _Int32		iCapLength;
+//    _Int32		iLength;
+//}DataPackageHeader;
+
+//typedef struct _TableShowInfo
+//{
+//    QString strTime;
+//    QString strTimeLag;
+//    QString strSrcAddr;
+//    QString strDscAddr;
+//    QString strPoro;
+//    int iLen;
+//    QString strInfo;
+//    QString strPort;
+//    //struct _proto_node *first_child;
+//    epan_dissect_t  *edt;
+//    frame_data  *fdata;
+//    guchar * data;
+
+//}TableShowInfo;
 
 #pragma pack( pop)
 

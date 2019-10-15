@@ -68,12 +68,8 @@ QLabel#label_aboutlogo{
 
 
 /**********QPushButton**********/
-QPushButton {
-    color: rgb(0, 63, 140);
-    background: transparent;
-    padding: -1;
-    outline: none;
-}
+
+
 
 QPushButton:enabled:hover {
     color: rgb(255, 255, 255);
@@ -89,6 +85,7 @@ QPushButton:!enabled {
     color: rgb(255, 255, 255);
     background: rgb(52, 128, 255);
 }
+
 
 
 

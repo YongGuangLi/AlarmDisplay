@@ -1,11 +1,12 @@
 #ifndef WIDGET_H
 #define WIDGET_H
 
-#include "floatingwindow.h"
 #include "RedisHelper.h"
 #include "databasehelper.h"
 #include "RtdbMessage.pb.h"
 #include "configini.h"
+
+#include "floatingwindow.h"
 #include "historyquery.h"
 #include "realtimealarm.h"
 #include "loginwindow.h"
@@ -28,6 +29,7 @@
 #include "userconfig.h"
 #include "pushbutton.h"
 #include "aboutdialog.h"
+#include "paraconfig.h"
 
 #include <QWidget>
 #include <QtCore>
@@ -96,6 +98,7 @@ private:
     ElectricRunCheck *electricRunCheck;
     AuxiliaryPowerCheck *auxiliaryPowerCheck;
     StatisticAnalysis *statisticAnalysis;
+    ParaConfig *paraConfig;
 private:
     PushButton *pushButton_SwitchStatusCheck;
     PushButton *pushButton_PrimaryEquipmentAbnormal;

@@ -77,6 +77,9 @@
              <height>1</height>
             </size>
            </property>
+           <property name="styleSheet">
+            <string notr="true">border:0</string>
+           </property>
            <property name="text">
             <string/>
            </property>
@@ -112,7 +115,7 @@
             <string notr="true">color: rgb(255, 255, 255);</string>
            </property>
            <property name="text">
-            <string> </string>
+            <string/>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -431,10 +434,29 @@
         <property name="styleSheet">
          <string notr="true"/>
         </property>
-        <layout class="QGridLayout" name="gridLayout_2" columnstretch="0,0,0,0,0,0,0,10">
+        <layout class="QGridLayout" name="gridLayout_2" columnstretch="0,0,0,0,0,0,0,0,0">
          <property name="margin">
           <number>0</number>
          </property>
+         <item row="0" column="3">
+          <widget class="QPushButton" name="pushButton_SystemConfig">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>110</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>系统管理</string>
+           </property>
+          </widget>
+         </item>
          <item row="0" column="0">
           <widget class="QPushButton" name="pushButton_HomePage">
            <property name="sizePolicy">
@@ -495,25 +517,6 @@
            </property>
           </widget>
          </item>
-         <item row="0" column="3">
-          <widget class="QPushButton" name="pushButton_SystemConfig">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>110</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>系统管理</string>
-           </property>
-          </widget>
-         </item>
          <item row="0" column="4">
           <widget class="QPushButton" name="pushButton_HistoryQuery">
            <property name="sizePolicy">
@@ -571,7 +574,7 @@
            </property>
           </widget>
          </item>
-         <item row="0" column="7">
+         <item row="0" column="8">
           <spacer name="horizontalSpacer">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -583,6 +586,25 @@
             </size>
            </property>
           </spacer>
+         </item>
+         <item row="0" column="7">
+          <widget class="QPushButton" name="pushButton_ParaConfig">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>110</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>参数配置</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>

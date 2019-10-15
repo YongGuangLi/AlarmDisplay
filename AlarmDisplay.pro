@@ -13,7 +13,7 @@ TEMPLATE = app
 
 CONFIG += uitools
 
-include(/home/liyg/log4qt/log4qt.pri)
+include($$PWD/../log4qt/log4qt.pri)
 
 SOURCES += main.cpp\
         widget.cpp \
@@ -60,7 +60,8 @@ SOURCES += main.cpp\
     primaryequipmentabnormal.cpp \
     secondaryequipmentabnormal.cpp \
     floatingwindow.cpp \
-    SmoothCurveGenerator1.cpp
+    SmoothCurveGenerator1.cpp \
+    paraconfig.cpp
 
 HEADERS  += widget.h \
     singleapplication.h \
@@ -111,7 +112,8 @@ HEADERS  += widget.h \
     primaryequipmentabnormal.h \
     secondaryequipmentabnormal.h \
     floatingwindow.h \
-    SmoothCurveGenerator1.h
+    SmoothCurveGenerator1.h \
+    paraconfig.h
 
 FORMS    += widget.ui \
     historyquery.ui \
@@ -141,38 +143,53 @@ FORMS    += widget.ui \
     aboutdialog.ui \
     primaryequipmentabnormal.ui \
     secondaryequipmentabnormal.ui \
-    floatingwindow.ui
+    floatingwindow.ui \
+    paraconfig.ui
 
 RESOURCES += \
     alarmdisplay.qrc
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/protobuf-3.3.0/lib/release/ -lprotobuf-lite
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/protobuf-3.3.0/lib/debug/ -lprotobuf-lite
-else:unix: LIBS += -L$$PWD/protobuf-3.3.0/lib/ -lprotobuf-lite
-
-INCLUDEPATH += $$PWD/protobuf-3.3.0/include
-DEPENDPATH += $$PWD/protobuf-3.3.0/include
 
 INCLUDEPATH += $$PWD/Control
 
-INCLUDEPATH += /home/liyg/wireshark-1.8.10
-INCLUDEPATH += /home/liyg/glib/include/glib-2.0
-INCLUDEPATH += /home/liyg/glib/lib/glib-2.0/include
+INCLUDEPATH += /usr/local/glib-2.26.0/include/glib-2.0
+INCLUDEPATH += /usr/local/glib-2.26.0/lib/glib-2.0/include
+LIBS += -L/usr/local/glib-2.26.0/lib -lglib-2.0
 
-LIBS += -L/home/liyg/glib/lib -lglib-2.0
-LIBS += -L/usr/local/lib -lpcap
 LIBS += -L/usr/local/wireshark-1.8.10/lib -lwireshark
+INCLUDEPATH += /data/wireshark-1.8.10
 
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/libacl/lib/release/ -lacl_cpp
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/libacl/lib/debug/ -lacl_cpp
-else:unix: LIBS += -L$$PWD/libacl/lib/ -lacl_cpp
+unix:!macx: LIBS += -L$$PWD/../protobuf-3.3.0/lib/ -lprotobuf-lite
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/libacl/lib/release/ -lacl
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/libacl/lib/debug/ -lacl
-else:unix: LIBS += -L$$PWD/libacl/lib/ -lacl
+INCLUDEPATH += $$PWD/../protobuf-3.3.0/include
+DEPENDPATH += $$PWD/../protobuf-3.3.0/include
+
+unix:!macx: PRE_TARGETDEPS += $$PWD/../protobuf-3.3.0/lib/libprotobuf-lite.a
 
 
-INCLUDEPATH += $$PWD/libacl/include
-DEPENDPATH += $$PWD/libacl/include
+
+unix:!macx: LIBS += -L$$PWD/../libpcap-1.9.0/lib/ -lpcap
+
+INCLUDEPATH += $$PWD/../libpcap-1.9.0/include
+DEPENDPATH += $$PWD/../libpcap-1.9.0/include
+
+unix:!macx: PRE_TARGETDEPS += $$PWD/../libpcap-1.9.0/lib/libpcap.a
+
+
+unix:!macx: LIBS += -L$$PWD/../acl/lib_acl_cpp/lib/ -l_acl_cpp
+
+INCLUDEPATH += $$PWD/../acl/lib_acl_cpp/include
+DEPENDPATH += $$PWD/../acl/lib_acl_cpp/include
+
+unix:!macx: PRE_TARGETDEPS += $$PWD/../acl/lib_acl_cpp/lib/lib_acl_cpp.a
+
+
+
+unix:!macx: LIBS += -L$$PWD/../acl/lib_acl/lib/ -lacl
+
+INCLUDEPATH += $$PWD/../acl/lib_acl/include
+DEPENDPATH += $$PWD/../acl/lib_acl/include
+
+unix:!macx: PRE_TARGETDEPS += $$PWD/../acl/lib_acl/lib/libacl.a
 
