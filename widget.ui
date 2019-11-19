@@ -434,7 +434,7 @@
         <property name="styleSheet">
          <string notr="true"/>
         </property>
-        <layout class="QGridLayout" name="gridLayout_2" columnstretch="0,0,0,0,0,0,0,0,0">
+        <layout class="QGridLayout" name="gridLayout_2" columnstretch="1,0,1,1,1,1,1,1,1,5">
          <property name="margin">
           <number>0</number>
          </property>
@@ -455,6 +455,9 @@
            <property name="text">
             <string>系统管理</string>
            </property>
+           <attribute name="buttonGroup">
+            <string notr="true">buttonGroup</string>
+           </attribute>
           </widget>
          </item>
          <item row="0" column="0">
@@ -474,6 +477,9 @@
            <property name="text">
             <string>首页</string>
            </property>
+           <attribute name="buttonGroup">
+            <string notr="true">buttonGroup</string>
+           </attribute>
           </widget>
          </item>
          <item row="0" column="1">
@@ -493,6 +499,9 @@
            <property name="text">
             <string>画面显示</string>
            </property>
+           <attribute name="buttonGroup">
+            <string notr="true">buttonGroup</string>
+           </attribute>
           </widget>
          </item>
          <item row="0" column="2">
@@ -515,6 +524,9 @@
            <property name="text">
             <string>实时告警</string>
            </property>
+           <attribute name="buttonGroup">
+            <string notr="true">buttonGroup</string>
+           </attribute>
           </widget>
          </item>
          <item row="0" column="4">
@@ -534,6 +546,9 @@
            <property name="text">
             <string>历史查询</string>
            </property>
+           <attribute name="buttonGroup">
+            <string notr="true">buttonGroup</string>
+           </attribute>
           </widget>
          </item>
          <item row="0" column="5">
@@ -553,9 +568,12 @@
            <property name="text">
             <string>统计分析</string>
            </property>
+           <attribute name="buttonGroup">
+            <string notr="true">buttonGroup</string>
+           </attribute>
           </widget>
          </item>
-         <item row="0" column="6">
+         <item row="0" column="7">
           <widget class="QPushButton" name="pushButton_Help">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -572,9 +590,12 @@
            <property name="text">
             <string>帮助</string>
            </property>
+           <attribute name="buttonGroup">
+            <string notr="true">buttonGroup</string>
+           </attribute>
           </widget>
          </item>
-         <item row="0" column="8">
+         <item row="0" column="9">
           <spacer name="horizontalSpacer">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -587,7 +608,7 @@
            </property>
           </spacer>
          </item>
-         <item row="0" column="7">
+         <item row="0" column="6">
           <widget class="QPushButton" name="pushButton_ParaConfig">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -604,6 +625,9 @@
            <property name="text">
             <string>参数配置</string>
            </property>
+           <attribute name="buttonGroup">
+            <string notr="true">buttonGroup</string>
+           </attribute>
           </widget>
          </item>
         </layout>
@@ -617,4 +641,7 @@
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
+ <buttongroups>
+  <buttongroup name="buttonGroup"/>
+ </buttongroups>
 </ui>

@@ -200,6 +200,7 @@ QPushButton#pushButton_HomePage {
     background: transparent;
 }
 
+
 QPushButton#pushButton_HomePage:enabled:hover {
     color: rgb(255, 255, 255);
     background: rgb(52, 128, 255);

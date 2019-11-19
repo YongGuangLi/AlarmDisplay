@@ -8,7 +8,7 @@ Widget::Widget(QWidget *parent) :
     ui->setupUi(this);
     isRunning = true;
     this->setWindowIcon(QIcon(":/images/images/aboutlogo.png"));
-    this->setWindowTitle(QString::fromLocal8Bit("全景数据集成及智能告警系统"));
+    this->setWindowTitle(QString::fromLocal8Bit("变电站全景运行信息综合分析系统"));
     this->showMaximized();
     centerDisplay();                                     //窗口居中显示
 
@@ -18,7 +18,9 @@ Widget::Widget(QWidget *parent) :
     SingletonConfig->initIAFRule(QApplication::applicationDirPath() + "/IAFRule.xml");
     SingletonConfig->initIASRule(QApplication::applicationDirPath() + "/IASRule.xml");
 
-    ui->label_station->setText(SingletonConfig->getStation());
+    //redis订阅
+    QtConcurrent::run(this, &Widget::redisSubscribe);
+
     if(SingletonDBHelper->open(SingletonConfig->getIpMySql(), SingletonConfig->getPortMySql(), SingletonConfig->getDbName(), SingletonConfig->getUserMysql() ,SingletonConfig->getPasswdMysql()))
     {
         qDebug()<<QString("Mysql Connect Success:%1").arg(SingletonConfig->getIpMySql());
@@ -33,16 +35,17 @@ Widget::Widget(QWidget *parent) :
         return;
     }
 
+    ui->label_station->setText(SingletonConfig->getStation());
+
     //初始化顶部导航栏按键
     initButtonConnections();
 
     //初始化告警页面切换按键
     initAlarmButtonsConnects();
 
-    iniAlarmTableWidget();
+    initAlarmTableWidget();
 
-    //redis订阅
-    QtConcurrent::run(this, &Widget::redisSubscribe);
+    ui->buttonGroup->setExclusive(true);
 
     ui->label_CurUser->installEventFilter(this);
 
@@ -53,7 +56,7 @@ Widget::Widget(QWidget *parent) :
     SingletonDBHelper->readOaAlarmDataFromDB();
 }
 
-void Widget::iniAlarmTableWidget()
+void Widget::initAlarmTableWidget()
 {
     ui->tableWidget_SmartAlarm->verticalHeader()->hide();
     ui->tableWidget_SmartAlarm->horizontalHeader()->hide();
@@ -75,7 +78,6 @@ void Widget::iniAlarmTableWidget()
     //接收并显示告警数据
     connect(SingletonAlarmData, SIGNAL(receiverSmartAlarmData(int,stAlarmData)), this, SLOT(dispSmartAlarmData(int, stAlarmData)));
     connect(SingletonAlarmData, SIGNAL(receiverOriginalAlarmData(int,stAlarmData)), this, SLOT(dispOriginalAlarmData(int, stAlarmData)));
-
 }
 
 void Widget::initButtonConnections()
@@ -101,15 +103,35 @@ void Widget::initButtonConnections()
     aboutDialog = new AboutDialog();
 
     paraConfig = new ParaConfig();
+    connect(this, SIGNAL(modifyConnStatus(QString,int)), paraConfig, SLOT(slot_modifyConnStatus(QString,int)));
 
     ui->pushButton_HomePage->setIcon(QIcon(":/images/images/HomePage/homepage.png"));
+    ui->pushButton_HomePage->setCheckable(true);
+    ui->pushButton_HomePage->setFlat(true);
     ui->pushButton_ConfigurationInterface->setIcon(QIcon(":/images/images/HomePage/configuration.png"));
+    ui->pushButton_ConfigurationInterface->setCheckable(true);
+    ui->pushButton_ConfigurationInterface->setFlat(true);
     ui->pushButton_RealTime->setIcon(QIcon(":/images/images/HomePage/alarm.png"));
+    ui->pushButton_RealTime->setCheckable(true);
+    ui->pushButton_RealTime->setFlat(true);
     ui->pushButton_SystemConfig->setIcon(QIcon(":/images/images/HomePage/systemconfig.png"));
+    ui->pushButton_SystemConfig->setCheckable(true);
+    ui->pushButton_SystemConfig->setFlat(true);
     ui->pushButton_HistoryQuery->setIcon(QIcon(":/images/images/HomePage/query.png"));
+    ui->pushButton_HistoryQuery->setCheckable(true);
+    ui->pushButton_HistoryQuery->setFlat(true);
     ui->pushButton_StatisticAnalysis->setIcon(QIcon(":/images/images/HomePage/statistic.png"));
+    ui->pushButton_StatisticAnalysis->setCheckable(true);
+    ui->pushButton_StatisticAnalysis->setFlat(true);
     ui->pushButton_login->setIcon(QIcon(":/images/images/HomePage/login.png"));
+    ui->pushButton_login->setCheckable(true);
+    ui->pushButton_login->setFlat(true);
+    ui->pushButton_ParaConfig->setIcon(QIcon(":images/images/RealTimeAlarm/config.png"));
+    ui->pushButton_ParaConfig->setCheckable(true);
+    ui->pushButton_ParaConfig->setFlat(true);
     ui->pushButton_Help->setIcon(QIcon(":/images/images/HomePage/about.png"));
+    ui->pushButton_Help->setCheckable(true);
+    ui->pushButton_Help->setFlat(true);
 
     connect(ui->pushButton_HomePage, SIGNAL(clicked()), this, SLOT(switchCurrentPage()));
     connect(ui->pushButton_HistoryQuery, SIGNAL(clicked()), this, SLOT(switchCurrentPage()));
@@ -514,6 +536,15 @@ void Widget::redisSubscribe()
                     QString strValue = QString(rtdbMessage.realpointvalue().pointvalue().c_str());
 
                     emit sendControlData(strPointName, strValue);
+                    break;
+                }
+                case TYPE_STATIONCONMSG:
+                {
+                    StationConMsg stationConMsg = rtdbMessage.stationconmsg();
+                    QString stationIp = QString::fromStdString(stationConMsg.stationip());
+                    int status = stationConMsg.statetype();
+
+                    emit modifyConnStatus(stationIp, status);
                     break;
                 }
                 default:

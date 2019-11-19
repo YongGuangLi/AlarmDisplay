@@ -93,6 +93,9 @@ extern RtdbMessageDefaultTypeInternal _RtdbMessage_default_instance_;
 class SOEMessage;
 class SOEMessageDefaultTypeInternal;
 extern SOEMessageDefaultTypeInternal _SOEMessage_default_instance_;
+class StationConMsg;
+class StationConMsgDefaultTypeInternal;
+extern StationConMsgDefaultTypeInternal _StationConMsg_default_instance_;
 class UPRealPointValue;
 class UPRealPointValueDefaultTypeInternal;
 extern UPRealPointValueDefaultTypeInternal _UPRealPointValue_default_instance_;
@@ -156,6 +159,18 @@ const CmdExecuteResult CmdExecuteResult_MIN = CTYPE_ACTIVE;
 const CmdExecuteResult CmdExecuteResult_MAX = CTYPE_ACTIVEFAIL;
 const int CmdExecuteResult_ARRAYSIZE = CmdExecuteResult_MAX + 1;
 
+enum ConnectStateType {
+  CST_INVALID = 0,
+  CST_CONNECT_SUCCESS = 1,
+  CST_CONNECT_CLOSE = 2,
+  ConnectStateType_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
+  ConnectStateType_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
+};
+bool ConnectStateType_IsValid(int value);
+const ConnectStateType ConnectStateType_MIN = CST_INVALID;
+const ConnectStateType ConnectStateType_MAX = CST_CONNECT_CLOSE;
+const int ConnectStateType_ARRAYSIZE = ConnectStateType_MAX + 1;
+
 enum RtdbMessageType {
   TYPE_LOGREQUEST = 0,
   TYPE_LOGRESPONSE = 1,
@@ -175,12 +190,13 @@ enum RtdbMessageType {
   TYPE_ALARMDATAMSG = 15,
   TYPE_REMOTECONTROL = 16,
   TYPE_UPDATERULEFILE = 17,
+  TYPE_STATIONCONMSG = 18,
   RtdbMessageType_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
   RtdbMessageType_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
 };
 bool RtdbMessageType_IsValid(int value);
 const RtdbMessageType RtdbMessageType_MIN = TYPE_LOGREQUEST;
-const RtdbMessageType RtdbMessageType_MAX = TYPE_UPDATERULEFILE;
+const RtdbMessageType RtdbMessageType_MAX = TYPE_STATIONCONMSG;
 const int RtdbMessageType_ARRAYSIZE = RtdbMessageType_MAX + 1;
 
 enum ObjectType {
@@ -3273,6 +3289,99 @@ class RemoteControl : public ::google::protobuf::MessageLite /* @@protoc_inserti
 };
 // -------------------------------------------------------------------
 
+class StationConMsg : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:StationConMsg) */ {
+ public:
+  StationConMsg();
+  virtual ~StationConMsg();
+
+  StationConMsg(const StationConMsg& from);
+
+  inline StationConMsg& operator=(const StationConMsg& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const StationConMsg& default_instance();
+
+  static inline const StationConMsg* internal_default_instance() {
+    return reinterpret_cast<const StationConMsg*>(
+               &_StationConMsg_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    22;
+
+  void Swap(StationConMsg* other);
+
+  // implements Message ----------------------------------------------
+
+  inline StationConMsg* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  StationConMsg* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CheckTypeAndMergeFrom(const ::google::protobuf::MessageLite& from)
+    PROTOBUF_FINAL;
+  void CopyFrom(const StationConMsg& from);
+  void MergeFrom(const StationConMsg& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  void DiscardUnknownFields();
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(StationConMsg* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::std::string GetTypeName() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // string stationIp = 2;
+  void clear_stationip();
+  static const int kStationIpFieldNumber = 2;
+  const ::std::string& stationip() const;
+  void set_stationip(const ::std::string& value);
+  #if LANG_CXX11
+  void set_stationip(::std::string&& value);
+  #endif
+  void set_stationip(const char* value);
+  void set_stationip(const char* value, size_t size);
+  ::std::string* mutable_stationip();
+  ::std::string* release_stationip();
+  void set_allocated_stationip(::std::string* stationip);
+
+  // .ConnectStateType stateType = 1;
+  void clear_statetype();
+  static const int kStateTypeFieldNumber = 1;
+  ::ConnectStateType statetype() const;
+  void set_statetype(::ConnectStateType value);
+
+  // @@protoc_insertion_point(class_scope:StationConMsg)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArenaLite _internal_metadata_;
+  ::google::protobuf::internal::ArenaStringPtr stationip_;
+  int statetype_;
+  mutable int _cached_size_;
+  friend struct protobuf_RtdbMessage_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class RtdbMessage : public ::google::protobuf::MessageLite /* @@protoc_insertion_point(class_definition:RtdbMessage) */ {
  public:
   RtdbMessage();
@@ -3292,7 +3401,7 @@ class RtdbMessage : public ::google::protobuf::MessageLite /* @@protoc_insertion
                &_RtdbMessage_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    22;
+    23;
 
   void Swap(RtdbMessage* other);
 
@@ -3488,6 +3597,15 @@ class RtdbMessage : public ::google::protobuf::MessageLite /* @@protoc_insertion
   ::UpdateRuleFile* release_updaterulefile();
   void set_allocated_updaterulefile(::UpdateRuleFile* updaterulefile);
 
+  // .StationConMsg stationConMsg = 25;
+  bool has_stationconmsg() const;
+  void clear_stationconmsg();
+  static const int kStationConMsgFieldNumber = 25;
+  const ::StationConMsg& stationconmsg() const;
+  ::StationConMsg* mutable_stationconmsg();
+  ::StationConMsg* release_stationconmsg();
+  void set_allocated_stationconmsg(::StationConMsg* stationconmsg);
+
   // int32 fromObject = 1;
   void clear_fromobject();
   static const int kFromObjectFieldNumber = 1;
@@ -3545,6 +3663,7 @@ class RtdbMessage : public ::google::protobuf::MessageLite /* @@protoc_insertion
   ::UPRealPointValue* uprealpointvalue_;
   ::RemoteControl* remotecontrol_;
   ::UpdateRuleFile* updaterulefile_;
+  ::StationConMsg* stationconmsg_;
   ::google::protobuf::int32 fromobject_;
   ::google::protobuf::int32 toobject_;
   int fromobjecttype_;
@@ -8408,6 +8527,77 @@ inline void RemoteControl::set_sbo(::google::protobuf::int32 value) {
 
 // -------------------------------------------------------------------
 
+// StationConMsg
+
+// .ConnectStateType stateType = 1;
+inline void StationConMsg::clear_statetype() {
+  statetype_ = 0;
+}
+inline ::ConnectStateType StationConMsg::statetype() const {
+  // @@protoc_insertion_point(field_get:StationConMsg.stateType)
+  return static_cast< ::ConnectStateType >(statetype_);
+}
+inline void StationConMsg::set_statetype(::ConnectStateType value) {
+  
+  statetype_ = value;
+  // @@protoc_insertion_point(field_set:StationConMsg.stateType)
+}
+
+// string stationIp = 2;
+inline void StationConMsg::clear_stationip() {
+  stationip_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& StationConMsg::stationip() const {
+  // @@protoc_insertion_point(field_get:StationConMsg.stationIp)
+  return stationip_.GetNoArena();
+}
+inline void StationConMsg::set_stationip(const ::std::string& value) {
+  
+  stationip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:StationConMsg.stationIp)
+}
+#if LANG_CXX11
+inline void StationConMsg::set_stationip(::std::string&& value) {
+  
+  stationip_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:StationConMsg.stationIp)
+}
+#endif
+inline void StationConMsg::set_stationip(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  stationip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:StationConMsg.stationIp)
+}
+inline void StationConMsg::set_stationip(const char* value, size_t size) {
+  
+  stationip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:StationConMsg.stationIp)
+}
+inline ::std::string* StationConMsg::mutable_stationip() {
+  
+  // @@protoc_insertion_point(field_mutable:StationConMsg.stationIp)
+  return stationip_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* StationConMsg::release_stationip() {
+  // @@protoc_insertion_point(field_release:StationConMsg.stationIp)
+  
+  return stationip_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void StationConMsg::set_allocated_stationip(::std::string* stationip) {
+  if (stationip != NULL) {
+    
+  } else {
+    
+  }
+  stationip_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), stationip);
+  // @@protoc_insertion_point(field_set_allocated:StationConMsg.stationIp)
+}
+
+// -------------------------------------------------------------------
+
 // RtdbMessage
 
 // int32 fromObject = 1;
@@ -9157,7 +9347,48 @@ inline void RtdbMessage::set_allocated_updaterulefile(::UpdateRuleFile* updateru
   // @@protoc_insertion_point(field_set_allocated:RtdbMessage.updateRuleFile)
 }
 
+// .StationConMsg stationConMsg = 25;
+inline bool RtdbMessage::has_stationconmsg() const {
+  return this != internal_default_instance() && stationconmsg_ != NULL;
+}
+inline void RtdbMessage::clear_stationconmsg() {
+  if (GetArenaNoVirtual() == NULL && stationconmsg_ != NULL) delete stationconmsg_;
+  stationconmsg_ = NULL;
+}
+inline const ::StationConMsg& RtdbMessage::stationconmsg() const {
+  // @@protoc_insertion_point(field_get:RtdbMessage.stationConMsg)
+  return stationconmsg_ != NULL ? *stationconmsg_
+                         : *::StationConMsg::internal_default_instance();
+}
+inline ::StationConMsg* RtdbMessage::mutable_stationconmsg() {
+  
+  if (stationconmsg_ == NULL) {
+    stationconmsg_ = new ::StationConMsg;
+  }
+  // @@protoc_insertion_point(field_mutable:RtdbMessage.stationConMsg)
+  return stationconmsg_;
+}
+inline ::StationConMsg* RtdbMessage::release_stationconmsg() {
+  // @@protoc_insertion_point(field_release:RtdbMessage.stationConMsg)
+  
+  ::StationConMsg* temp = stationconmsg_;
+  stationconmsg_ = NULL;
+  return temp;
+}
+inline void RtdbMessage::set_allocated_stationconmsg(::StationConMsg* stationconmsg) {
+  delete stationconmsg_;
+  stationconmsg_ = stationconmsg;
+  if (stationconmsg) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:RtdbMessage.stationConMsg)
+}
+
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
@@ -9213,6 +9444,7 @@ namespace protobuf {
 template <> struct is_proto_enum< ::PointValueType> : ::google::protobuf::internal::true_type {};
 template <> struct is_proto_enum< ::CtrlCmdType> : ::google::protobuf::internal::true_type {};
 template <> struct is_proto_enum< ::CmdExecuteResult> : ::google::protobuf::internal::true_type {};
+template <> struct is_proto_enum< ::ConnectStateType> : ::google::protobuf::internal::true_type {};
 template <> struct is_proto_enum< ::RtdbMessageType> : ::google::protobuf::internal::true_type {};
 template <> struct is_proto_enum< ::ObjectType> : ::google::protobuf::internal::true_type {};
 

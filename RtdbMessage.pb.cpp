@@ -57,6 +57,8 @@ class UpdateRuleFileDefaultTypeInternal : public ::google::protobuf::internal::E
 } _UpdateRuleFile_default_instance_;
 class RemoteControlDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<RemoteControl> {
 } _RemoteControl_default_instance_;
+class StationConMsgDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<StationConMsg> {
+} _StationConMsg_default_instance_;
 class RtdbMessageDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<RtdbMessage> {
 } _RtdbMessage_default_instance_;
 
@@ -73,6 +75,7 @@ PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::AuxillaryParseTableField
 };
 PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::ParseTable const
     TableStruct::schema[] = {
+  { NULL, NULL, 0, -1, -1, false },
   { NULL, NULL, 0, -1, -1, false },
   { NULL, NULL, 0, -1, -1, false },
   { NULL, NULL, 0, -1, -1, false },
@@ -122,6 +125,7 @@ void TableStruct::Shutdown() {
   _AlarmDataMsg_default_instance_.Shutdown();
   _UpdateRuleFile_default_instance_.Shutdown();
   _RemoteControl_default_instance_.Shutdown();
+  _StationConMsg_default_instance_.Shutdown();
   _RtdbMessage_default_instance_.Shutdown();
 }
 
@@ -151,6 +155,7 @@ void TableStruct::InitDefaultsImpl() {
   _AlarmDataMsg_default_instance_.DefaultConstruct();
   _UpdateRuleFile_default_instance_.DefaultConstruct();
   _RemoteControl_default_instance_.DefaultConstruct();
+  _StationConMsg_default_instance_.DefaultConstruct();
   _RtdbMessage_default_instance_.DefaultConstruct();
   _RtdbMessage_default_instance_.get_mutable()->logrequest_ = const_cast< ::LogRequest*>(
       ::LogRequest::internal_default_instance());
@@ -186,6 +191,8 @@ void TableStruct::InitDefaultsImpl() {
       ::RemoteControl::internal_default_instance());
   _RtdbMessage_default_instance_.get_mutable()->updaterulefile_ = const_cast< ::UpdateRuleFile*>(
       ::UpdateRuleFile::internal_default_instance());
+  _RtdbMessage_default_instance_.get_mutable()->stationconmsg_ = const_cast< ::StationConMsg*>(
+      ::StationConMsg::internal_default_instance());
 }
 
 void InitDefaults() {
@@ -251,6 +258,17 @@ bool CmdExecuteResult_IsValid(int value) {
   }
 }
 
+bool ConnectStateType_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+      return true;
+    default:
+      return false;
+  }
+}
+
 bool RtdbMessageType_IsValid(int value) {
   switch (value) {
     case 0:
@@ -271,6 +289,7 @@ bool RtdbMessageType_IsValid(int value) {
     case 15:
     case 16:
     case 17:
+    case 18:
       return true;
     default:
       return false;
@@ -13433,6 +13452,302 @@ void RemoteControl::set_sbo(::google::protobuf::int32 value) {
 // ===================================================================
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int StationConMsg::kStateTypeFieldNumber;
+const int StationConMsg::kStationIpFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+StationConMsg::StationConMsg()
+  : ::google::protobuf::MessageLite(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_RtdbMessage_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:StationConMsg)
+}
+StationConMsg::StationConMsg(const StationConMsg& from)
+  : ::google::protobuf::MessageLite(),
+      _internal_metadata_(NULL),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  stationip_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.stationip().size() > 0) {
+    stationip_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.stationip_);
+  }
+  statetype_ = from.statetype_;
+  // @@protoc_insertion_point(copy_constructor:StationConMsg)
+}
+
+void StationConMsg::SharedCtor() {
+  stationip_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  statetype_ = 0;
+  _cached_size_ = 0;
+}
+
+StationConMsg::~StationConMsg() {
+  // @@protoc_insertion_point(destructor:StationConMsg)
+  SharedDtor();
+}
+
+void StationConMsg::SharedDtor() {
+  stationip_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+
+void StationConMsg::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const StationConMsg& StationConMsg::default_instance() {
+  protobuf_RtdbMessage_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+StationConMsg* StationConMsg::New(::google::protobuf::Arena* arena) const {
+  StationConMsg* n = new StationConMsg;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void StationConMsg::Clear() {
+// @@protoc_insertion_point(message_clear_start:StationConMsg)
+  stationip_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  statetype_ = 0;
+}
+
+bool StationConMsg::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:StationConMsg)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // .ConnectStateType stateType = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(8u)) {
+          int value;
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
+                 input, &value)));
+          set_statetype(static_cast< ::ConnectStateType >(value));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // string stationIp = 2;
+      case 2: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(18u)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_stationip()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->stationip().data(), this->stationip().length(),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "StationConMsg.stationIp"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:StationConMsg)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:StationConMsg)
+  return false;
+#undef DO_
+}
+
+void StationConMsg::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:StationConMsg)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .ConnectStateType stateType = 1;
+  if (this->statetype() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteEnum(
+      1, this->statetype(), output);
+  }
+
+  // string stationIp = 2;
+  if (this->stationip().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->stationip().data(), this->stationip().length(),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "StationConMsg.stationIp");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      2, this->stationip(), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:StationConMsg)
+}
+
+size_t StationConMsg::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:StationConMsg)
+  size_t total_size = 0;
+
+  // string stationIp = 2;
+  if (this->stationip().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->stationip());
+  }
+
+  // .ConnectStateType stateType = 1;
+  if (this->statetype() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::EnumSize(this->statetype());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void StationConMsg::CheckTypeAndMergeFrom(
+    const ::google::protobuf::MessageLite& from) {
+  MergeFrom(*::google::protobuf::down_cast<const StationConMsg*>(&from));
+}
+
+void StationConMsg::MergeFrom(const StationConMsg& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:StationConMsg)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.stationip().size() > 0) {
+
+    stationip_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.stationip_);
+  }
+  if (from.statetype() != 0) {
+    set_statetype(from.statetype());
+  }
+}
+
+void StationConMsg::CopyFrom(const StationConMsg& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:StationConMsg)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool StationConMsg::IsInitialized() const {
+  return true;
+}
+
+void StationConMsg::Swap(StationConMsg* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void StationConMsg::InternalSwap(StationConMsg* other) {
+  stationip_.Swap(&other->stationip_);
+  std::swap(statetype_, other->statetype_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::std::string StationConMsg::GetTypeName() const {
+  return "StationConMsg";
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// StationConMsg
+
+// .ConnectStateType stateType = 1;
+void StationConMsg::clear_statetype() {
+  statetype_ = 0;
+}
+::ConnectStateType StationConMsg::statetype() const {
+  // @@protoc_insertion_point(field_get:StationConMsg.stateType)
+  return static_cast< ::ConnectStateType >(statetype_);
+}
+void StationConMsg::set_statetype(::ConnectStateType value) {
+  
+  statetype_ = value;
+  // @@protoc_insertion_point(field_set:StationConMsg.stateType)
+}
+
+// string stationIp = 2;
+void StationConMsg::clear_stationip() {
+  stationip_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+const ::std::string& StationConMsg::stationip() const {
+  // @@protoc_insertion_point(field_get:StationConMsg.stationIp)
+  return stationip_.GetNoArena();
+}
+void StationConMsg::set_stationip(const ::std::string& value) {
+  
+  stationip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:StationConMsg.stationIp)
+}
+#if LANG_CXX11
+void StationConMsg::set_stationip(::std::string&& value) {
+  
+  stationip_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:StationConMsg.stationIp)
+}
+#endif
+void StationConMsg::set_stationip(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  stationip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:StationConMsg.stationIp)
+}
+void StationConMsg::set_stationip(const char* value, size_t size) {
+  
+  stationip_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:StationConMsg.stationIp)
+}
+::std::string* StationConMsg::mutable_stationip() {
+  
+  // @@protoc_insertion_point(field_mutable:StationConMsg.stationIp)
+  return stationip_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+::std::string* StationConMsg::release_stationip() {
+  // @@protoc_insertion_point(field_release:StationConMsg.stationIp)
+  
+  return stationip_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+void StationConMsg::set_allocated_stationip(::std::string* stationip) {
+  if (stationip != NULL) {
+    
+  } else {
+    
+  }
+  stationip_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), stationip);
+  // @@protoc_insertion_point(field_set_allocated:StationConMsg.stationIp)
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int RtdbMessage::kFromObjectFieldNumber;
 const int RtdbMessage::kToObjectFieldNumber;
 const int RtdbMessage::kFromObjectTypeFieldNumber;
@@ -13456,6 +13771,7 @@ const int RtdbMessage::kAlarmDataMsgFieldNumber;
 const int RtdbMessage::kUpRealPointValueFieldNumber;
 const int RtdbMessage::kRemoteControlFieldNumber;
 const int RtdbMessage::kUpdateRuleFileFieldNumber;
+const int RtdbMessage::kStationConMsgFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 RtdbMessage::RtdbMessage()
@@ -13556,6 +13872,11 @@ RtdbMessage::RtdbMessage(const RtdbMessage& from)
   } else {
     updaterulefile_ = NULL;
   }
+  if (from.has_stationconmsg()) {
+    stationconmsg_ = new ::StationConMsg(*from.stationconmsg_);
+  } else {
+    stationconmsg_ = NULL;
+  }
   ::memcpy(&fromobject_, &from.fromobject_,
     reinterpret_cast<char*>(&transactionid_) -
     reinterpret_cast<char*>(&fromobject_) + sizeof(transactionid_));
@@ -13624,6 +13945,9 @@ void RtdbMessage::SharedDtor() {
   }
   if (this != internal_default_instance()) {
     delete updaterulefile_;
+  }
+  if (this != internal_default_instance()) {
+    delete stationconmsg_;
   }
 }
 
@@ -13715,6 +14039,10 @@ void RtdbMessage::Clear() {
     delete updaterulefile_;
   }
   updaterulefile_ = NULL;
+  if (GetArenaNoVirtual() == NULL && stationconmsg_ != NULL) {
+    delete stationconmsg_;
+  }
+  stationconmsg_ = NULL;
   ::memset(&fromobject_, 0, reinterpret_cast<char*>(&transactionid_) -
     reinterpret_cast<char*>(&fromobject_) + sizeof(transactionid_));
 }
@@ -14020,6 +14348,18 @@ bool RtdbMessage::MergePartialFromCodedStream(
         break;
       }
 
+      // .StationConMsg stationConMsg = 25;
+      case 25: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(202u)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+               input, mutable_stationconmsg()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0 ||
@@ -14182,6 +14522,12 @@ void RtdbMessage::SerializeWithCachedSizes(
       24, *this->updaterulefile_, output);
   }
 
+  // .StationConMsg stationConMsg = 25;
+  if (this->has_stationconmsg()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessage(
+      25, *this->stationconmsg_, output);
+  }
+
   // @@protoc_insertion_point(serialize_end:RtdbMessage)
 }
 
@@ -14308,6 +14654,13 @@ size_t RtdbMessage::ByteSizeLong() const {
         *this->updaterulefile_);
   }
 
+  // .StationConMsg stationConMsg = 25;
+  if (this->has_stationconmsg()) {
+    total_size += 2 +
+      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+        *this->stationconmsg_);
+  }
+
   // int32 fromObject = 1;
   if (this->fromobject() != 0) {
     total_size += 1 +
@@ -14417,6 +14770,9 @@ void RtdbMessage::MergeFrom(const RtdbMessage& from) {
   if (from.has_updaterulefile()) {
     mutable_updaterulefile()->::UpdateRuleFile::MergeFrom(from.updaterulefile());
   }
+  if (from.has_stationconmsg()) {
+    mutable_stationconmsg()->::StationConMsg::MergeFrom(from.stationconmsg());
+  }
   if (from.fromobject() != 0) {
     set_fromobject(from.fromobject());
   }
@@ -14470,6 +14826,7 @@ void RtdbMessage::InternalSwap(RtdbMessage* other) {
   std::swap(uprealpointvalue_, other->uprealpointvalue_);
   std::swap(remotecontrol_, other->remotecontrol_);
   std::swap(updaterulefile_, other->updaterulefile_);
+  std::swap(stationconmsg_, other->stationconmsg_);
   std::swap(fromobject_, other->fromobject_);
   std::swap(toobject_, other->toobject_);
   std::swap(fromobjecttype_, other->fromobjecttype_);
@@ -15231,6 +15588,45 @@ void RtdbMessage::set_allocated_updaterulefile(::UpdateRuleFile* updaterulefile)
     
   }
   // @@protoc_insertion_point(field_set_allocated:RtdbMessage.updateRuleFile)
+}
+
+// .StationConMsg stationConMsg = 25;
+bool RtdbMessage::has_stationconmsg() const {
+  return this != internal_default_instance() && stationconmsg_ != NULL;
+}
+void RtdbMessage::clear_stationconmsg() {
+  if (GetArenaNoVirtual() == NULL && stationconmsg_ != NULL) delete stationconmsg_;
+  stationconmsg_ = NULL;
+}
+const ::StationConMsg& RtdbMessage::stationconmsg() const {
+  // @@protoc_insertion_point(field_get:RtdbMessage.stationConMsg)
+  return stationconmsg_ != NULL ? *stationconmsg_
+                         : *::StationConMsg::internal_default_instance();
+}
+::StationConMsg* RtdbMessage::mutable_stationconmsg() {
+  
+  if (stationconmsg_ == NULL) {
+    stationconmsg_ = new ::StationConMsg;
+  }
+  // @@protoc_insertion_point(field_mutable:RtdbMessage.stationConMsg)
+  return stationconmsg_;
+}
+::StationConMsg* RtdbMessage::release_stationconmsg() {
+  // @@protoc_insertion_point(field_release:RtdbMessage.stationConMsg)
+  
+  ::StationConMsg* temp = stationconmsg_;
+  stationconmsg_ = NULL;
+  return temp;
+}
+void RtdbMessage::set_allocated_stationconmsg(::StationConMsg* stationconmsg) {
+  delete stationconmsg_;
+  stationconmsg_ = stationconmsg;
+  if (stationconmsg) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_set_allocated:RtdbMessage.stationConMsg)
 }
 
 #endif  // PROTOBUF_INLINE_NOT_IN_HEADERS

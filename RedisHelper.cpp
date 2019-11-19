@@ -91,7 +91,7 @@ bool RedisHelper::check_connect()
 
 bool RedisHelper::set(string key, string value)
 {
-	acl::redis redis(client_pub_);
+    acl::redis redis(client_pub_);
 	bool result = redis.set(key.c_str(), value.c_str());
 	if (!result)
 	{
@@ -99,7 +99,22 @@ bool RedisHelper::set(string key, string value)
 		printf("error: %s\r\n", res ? res->get_error() : "unknown error");
 	}
 
-	return result;
+    return result;
+}
+
+bool RedisHelper::get(string key, string &value)
+{
+    acl::redis redis(client_pub_);
+    acl::string tmpValue;
+    bool result = redis.get(key.c_str(), tmpValue);
+    if (!result)
+    {
+        const acl::redis_result* res = redis.get_result();
+        printf("error: %s\r\n", res ? res->get_error() : "unknown error");
+    }
+
+    value = tmpValue.c_str();
+    return result;
 }
 
 int RedisHelper::publish(string channel, string message, string key)

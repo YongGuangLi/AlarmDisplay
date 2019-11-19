@@ -36,15 +36,15 @@
     </rect>
    </property>
    <property name="text">
-    <string> </string>
+    <string/>
    </property>
   </widget>
   <widget class="QLabel" name="label_AboutInfo">
    <property name="geometry">
     <rect>
-     <x>120</x>
+     <x>100</x>
      <y>20</y>
-     <width>241</width>
+     <width>271</width>
      <height>161</height>
     </rect>
    </property>
@@ -52,7 +52,7 @@
     <string notr="true">font-size:15px;</string>
    </property>
    <property name="text">
-    <string> </string>
+    <string/>
    </property>
   </widget>
  </widget>

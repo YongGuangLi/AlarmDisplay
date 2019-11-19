@@ -42,6 +42,8 @@ public:
 
 	bool set(string key, string value);
 
+    bool get(string key, string& value);
+
 	//返回订阅者数量， -1出错
 	int publish(string channel, string message, string key = "");
 

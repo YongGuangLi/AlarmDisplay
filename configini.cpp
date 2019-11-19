@@ -32,7 +32,7 @@ bool ConfigIni::initConfigIni(QString filepath)
     settings_->beginGroup("REDIS");
     ipRedis_ = settings_->value("ip").toString();
     portRedis = settings_->value("port").toInt();
-    passwdRedis_ = settings_->value("passwd").toInt();
+    passwdRedis_ = settings_->value("passwd").toString();
     settings_->endGroup();
 
     settings_->beginGroup("PATH");

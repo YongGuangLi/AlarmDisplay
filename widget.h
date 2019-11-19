@@ -47,7 +47,7 @@ class Widget : public QWidget
     
 public:
     explicit Widget(QWidget *parent = 0);
-    void iniAlarmTableWidget();
+    void initAlarmTableWidget();
     void initButtonConnections();             //初始化导航栏按键信号连接
     void initAlarmButtonsConnects();          //初始化首页告警按键信号连接
     void logoutCurUser();
@@ -72,6 +72,7 @@ signals:
     //实时点值,更改组态界面控件值
     void sendControlData(QString, QString);
 
+    void modifyConnStatus(QString, int);
 private:
     Ui::Widget *ui;
     RedisHelper *redisHelper;
