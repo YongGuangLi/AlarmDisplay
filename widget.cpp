@@ -49,7 +49,7 @@ Widget::Widget(QWidget *parent) :
 
     ui->label_CurUser->installEventFilter(this);
 
-    FloatingWindow *floatingWindow = new FloatingWindow();
+    floatingWindow = new FloatingWindow(this);
     floatingWindow->show();
 
     SingletonDBHelper->readIaAlarmDataFromDB();
@@ -342,8 +342,6 @@ void Widget::logoutCurUser()
 Widget::~Widget()
 {
     SingletonConfig->writeColorToFile();
-    floatingWindow->deleteLater();
-    isRunning = false;
     redisHelper->publish(REDIS_CHANNEL_ALARM, "exit");
     delete ui;
 }
@@ -485,6 +483,7 @@ void Widget::redisSubscribe()
         string message;
         if(SingleRedisHelp->getMessage(message))
         {
+            qDebug()<<message.c_str();
             RtdbMessage rtdbMessage;
             if(rtdbMessage.ParseFromString(message))
             {

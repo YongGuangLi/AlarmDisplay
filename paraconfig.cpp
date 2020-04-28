@@ -25,6 +25,14 @@ ParaConfig::ParaConfig(QWidget *parent) :
     listLineEdit.push_back(ui->lineEdit_14);
     listLineEdit.push_back(ui->lineEdit_15);
     listLineEdit.push_back(ui->lineEdit_16);
+    listLineEdit.push_back(ui->lineEdit_17);
+    listLineEdit.push_back(ui->lineEdit_18);
+    listLineEdit.push_back(ui->lineEdit_19);
+    listLineEdit.push_back(ui->lineEdit_20);
+    listLineEdit.push_back(ui->lineEdit_21);
+    listLineEdit.push_back(ui->lineEdit_22);
+    listLineEdit.push_back(ui->lineEdit_23);
+    listLineEdit.push_back(ui->lineEdit_24);
 
     init();
 }

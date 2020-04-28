@@ -9,6 +9,7 @@ RealTimeAlarm::RealTimeAlarm(QWidget *parent) :
     this->setWindowTitle(QString::fromLocal8Bit("智能告警实时展示"));
 
     centerDisplay();
+
     initWidgetDisp();
     //智能告警等级过滤
     initSmartRadioButtons();
@@ -24,6 +25,7 @@ RealTimeAlarm::RealTimeAlarm(QWidget *parent) :
 
     //遥控过程
     remoteControlWidget = new RemoteControlWidget();
+
     //告警详情
     alarmDetail = new AlarmDetail();
     alarmDetail->addRemoteControlProcess(remoteControlWidget);
@@ -31,9 +33,13 @@ RealTimeAlarm::RealTimeAlarm(QWidget *parent) :
     //间隔过滤
     connect(ui->pushButton_SmartBayFilter, SIGNAL(clicked()), this, SLOT(selectFilterBay()));
     connect(ui->pushButton_SmartBayShield, SIGNAL(clicked()), this, SLOT(selectFilterBay()));
+    ui->pushButton_SmartBayFilter->setFlat(true);
+    ui->pushButton_SmartBayShield->setFlat(true);
 
     connect(ui->pushButton_OriginalBayFilter, SIGNAL(clicked()), this, SLOT(selectFilterBay()));
     connect(ui->pushButton_OriginalBayShield, SIGNAL(clicked()), this, SLOT(selectFilterBay()));
+    ui->pushButton_OriginalBayFilter->setFlat(true);
+    ui->pushButton_OriginalBayShield->setFlat(true);
 
     //修改告警等级颜色,重新显示
     alarmDispConfig = new AlarmDispConfig();
@@ -61,7 +67,11 @@ RealTimeAlarm::RealTimeAlarm(QWidget *parent) :
     connect(ui->pushButton_OriginalPause, SIGNAL(clicked(bool)), this, SLOT(pauseOriginalAlarmData(bool)));
 
     ui->pushButton_SmartPause->setCheckable(true);
+    ui->pushButton_SmartPause->setFlat(true);
     ui->pushButton_OriginalPause->setCheckable(true);
+    ui->pushButton_OriginalPause->setFlat(true);
+
+    ui->pushButton_alarmConfig->setFlat(true);
 }
 
 RealTimeAlarm::~RealTimeAlarm()
